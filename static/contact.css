@@ -1,0 +1,16 @@
+.action-wrapper{
+    margin-left: 50px;
+}
+.para1{
+    padding: 120px 0 0 0;
+}
+.para1 span{
+    font-size: 60px;
+    color: #fff;
+}
+.para1 p{
+    width: 390px;
+    font-size: 20px;
+    color: #fff;
+    text-align: left;
+}

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<title>King's Hotel - Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script
+src="http://code.jquery.com/jquery-3.3.1.js"
+integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+<link rel="stylesheet" href="../static/hotel.css">
+<link rel="stylesheet" href="../static/animations.css">
+<link rel="stylesheet" href="../static/booking.css">
+<link rel="stylesheet" href="../static/BootStrap/css/w3.css">
+<link rel="stylesheet" href="../static/BootStrap/icons/icons">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<style>
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../static/background.jpg');
+    /* height: 100vh; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+    font-weight: bold;
+    font-style: bold;
+  
+}
+.container{
+    width: 100%;
+   
+    max-width: 900px;
+    padding: 30px 30px;
+    border-radius: 7px;
+
+	overflow: hidden;
+	background-color: rgba(117, 117, 117, 0.377);
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
+	margin: auto;
+
+	transition: all 0.5s;
+}
+
+.container:hover {
+    box-shadow: 0 8px 16px 0 rgb(0, 0, 0);
+}
+.container .title{
+    padding: 0 0 10px 0;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.card
+{
+  position:relative;
+  width:250px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:300px;
+  border-radius:4px;
+  text-align:center;
+  overflow:hidden;
+  transition:0.5s;
+}
+.card:hover
+{
+  box-shadow:0 15px 35px rgba(0,0,0,.5);
+}
+.card:before
+{
+  content:'';
+  position:absolute;
+  top:0;
+  left:-50%;
+  width:100%;
+  height:100%;
+  background: transparent;
+  pointer-events:none;
+  z-index:1;
+}
+.percent
+{
+  position:relative;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  box-shadow: inset 0 0 50px #000;
+  background:#222;
+  z-index:1000;
+}
+.percent .num
+{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:50%;
+}
+.percent .num h2
+{
+  color:#ffffff;
+  font-weight:700;
+  font-size:40px;
+  transition:0.5s;
+}
+.card:hover .percent .num h2
+{
+  color:#fff;
+  font-size:60px;
+}
+.percent .num h2 span
+{
+  color:#ffffff;
+  font-size:24px;
+  transition:0.5s;
+}
+.card:hover .percent .num h2 span
+{
+  color:#fff;
+}
+.text
+{
+  position:relative;
+  color:#d8d8d8;
+  margin-top:20px;
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  transition:0.5s;
+}
+.card:hover .text
+{
+  color:#fff;
+  border:none;
+}
+svg
+{
+  position:relative;
+  width:150px;
+  height:150px;
+  z-index:1000;
+}
+svg circle
+{
+  width:100%;
+  height:100%;
+  fill:none;
+  stroke:#191919;
+  stroke-width:10;
+  stroke-linecap:round;
+  transform:translate(5px,5px);
+}
+svg circle:nth-child(2)
+{
+  stroke-dasharray:440;
+  stroke-dashoffset:440;
+}
+.card:nth-child(1) svg circle:nth-child(2)
+{
+  stroke-dashoffset:calc(440 - (440 * 90) / 100);
+  stroke:#ffffff;
+}
+
+.progress {
+  background: rgba(255, 255, 255, 0.384);
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 40px;
+  width: 500px;
+}
+
+#progress-value1 {
+  animation: load1 3s normal forwards;
+  /* box-shadow: 0 10px 40px -10px #fff; */
+  border-radius: 100px;
+  background: #ffffff;
+  height: 30px;
+  width: 0;
+}
+
+#progress-value2 {
+  animation: load2 3s normal forwards;
+  /* box-shadow: 0 10px 40px -10px #fff; */
+  border-radius: 100px;
+  background: #ffffff;
+  height: 30px;
+  width: 0;
+}
+
+#progress-value3 {
+  animation: load3 3s normal forwards;
+  /* box-shadow: 0 10px 40px -10px #fff; */
+  border-radius: 100px;
+  background: #ffffff;
+  height: 30px;
+  width: 0;
+}
+
+.hov {
+  margin-left: 10px;
+}
+
+@keyframes load1 {
+  0% { width: 0; }
+  100% { width: 68%; }
+}
+
+@keyframes load2 {
+  0% { width: 0; }
+  100% { width: 38%; }
+}
+
+@keyframes load3 {
+  0% { width: 0; }
+  100% { width: 88%; }
+}
+
+/* #show {
+  background-color: black;
+} */
+
+table.dataTable tbody tr{
+  background-color: transparent;
+}
+
+table.dataTable{
+  border: none;
+  outline: none;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #ffffff;
+    margin-left: 3px;
+}
+</style>
+<body>
+
+<div id="mySidenav" class="w3-sidebar w3-bar-block w3-black w3-card sidenav">
+  <!-- <h5 class="w3-bar-item">Menu</h5> -->
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <button class="w3-bar-item w3-button tablink" id="default" onclick="openLink(event, 'Fade')">Dashboard</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Left')">Guests</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Right')">Rooms</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Top')">Complains</button>
+  <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Bottom')">Bookings</button>
+  <button class="w3-bar-item w3-button tablink"><a href="/hotel" style="all: initial; color: white; font-weight: bold; font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';">Home</a></button>
+  <button class="w3-bar-item w3-button tablink">{{a}}</button>
+</div>
+<div id="main" style="color: white">
+	<span id="hide" style="font-size: 30px; cursor: pointer; margin-left: 2vw;" onclick="openNav()">&#9776;</span>
+
+  <div id="Fade" class="w3-container city w3-animate-zoom">
+	<div style="display: flex;">
+		<div class="container" style="display: flex;">
+			<h2>Guests: </h2>
+
+      <!-- Display Here -->
+			<input type="text" id="guest" name="guest" style="color:white; font-size: 35px; margin-left: 15vw; margin-top: 1.5vh; background-color: transparent; width: 50px; border: none;">
+      <!-- Display Above -->
+    
+    </div>
+
+		<div class="container" style="margin-left: 10px; display: flex;">
+			<h2>T.Rooms:</h2>
+			<!-- <input type="text" id="guest" name="guest" style="background-color: transparent; width: 50px; border: none;"> -->
+			<p style="font-size: 35px; margin-left: 15vw; margin-top: 1.5vh;">60</p>
+		</div>
+	</div>
+	<div class="container" style="display: flex; margin-top: 30px;">
+		<div class="card">
+		  <div class="box">
+			<div class="percent">
+			  <svg>
+				<circle cx="70" cy="70" r="70"></circle>
+				<circle cx="70" cy="70" r="70"></circle>
+				<svg>
+				  <div class="num">
+					<h2>90<span>%</span></h2>
+				  </div>
+			</div>
+				<h2 class="text">Reviews</h2>
+		  </div>
+		</div>
+		<div style="margin-top: 4vh;">
+		<div class="hov">
+		  <label style="font-weight: 700; font-size: 28px;">Pending</label>
+		  <div class="progress" style="margin-top:9px;">
+			<div id="progress-value1"></div>
+		  </div>
+		</div>
+		<div class="hov">
+		  <label style="font-weight: 700; font-size: 28px;">Completed</label>
+		  <div class="progress" style="margin-top:9px;">
+			<div id="progress-value2"></div>
+		  </div>
+		</div>
+		<div class="hov">
+		  <label style="font-weight: 700; font-size: 28px;">Reviews</label>
+		  <div class="progress" style="margin-top:9px;">
+			<div id="progress-value3"></div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+  <!-- GUESTS -->
+  <div id="Left" class="w3-container city w3-animate-zoom" style="display:none;">
+    <h1 style="font-weight: bold;">Guests</h1>
+    <div class="container" style="color:rgb(255, 255, 255); background-color: rgba(117, 117, 117, 0.274);">
+      <table id="show1" border="0">
+          <thead>
+                  <tr>
+                      <th>Guest Name</th>
+                      <th>Guest Email</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Country</th>
+                      <th>Phone Number</th>
+                  </tr>
+              </thead>
+              <tfoot>
+            <tr>
+                      <th>Guest Name</th>
+                      <th>Guest Email</th>
+                      <th>City</th>
+                      <th>State</th>
+                      <th>Country</th>
+                      <th>Phone Number</th>
+            </tr>
+              </tfoot>
+
+      </table>
+      <button id="mybutton1">Show Guests</button>
+    </div>
+  </div>
+
+  <!-- ROOMS -->
+  <div id="Right" class="w3-container city w3-animate-right" style="display:none">
+    <div class="container" style="color:rgb(255, 255, 255); background-color: rgba(117, 117, 117, 0.274);">
+      <div class="title" style="font-weight: bold;">ADD New Room</div>
+      <form id="form">
+          <div class="details">
+
+
+              <div class="input-box">
+                  <label>Enter a Room No</label>
+                  <input type="number" name="r_number" placeholder="Enter New Room Number">
+              </div>
+
+              <div class="input-box">
+                  <label>Enter a Room Type</label>
+                  <input type="text" name="r_type" placeholder="Enter a Room Type">
+              </div>
+              <div class="input-box">
+                  <label>Enter a Room Price</label>
+                  <input type="number" name="r_price" placeholder="Enter a Room Price">
+              </div>
+
+
+              <div class="input-box">
+                  <label>Room Status</label>
+                  <input type="text" name="r_status" placeholder="Enter room Status">
+              </div>
+
+
+          </div>
+
+              <div>
+                  <button id="submit" style="margin-left:20%;">Add Room</button>
+              </div>
+      </form>
+  </div>
+  <div class="container" style="margin-top: 10vh;">
+    <h1 style="font-weight: bold;">Rooms</h1>
+      <table id="show" border="0">
+          <thead>
+                  <tr>
+                      <th>Room_No</th>
+                      <th>Room_Type</th>
+                      <th>Room_Price</th>
+                      <th>Room_Status</th>
+                      </tr>
+              </thead>
+              <tfoot>
+            <tr>
+                      <th>Room_No</th>
+                      <th>Room_Type</th>
+                      <th>Room_Price</th>
+                      <th>Room_Status</th>
+                      </tr>
+
+
+              </tfoot>
+
+      </table>
+      <button id="mybutton" style="margin-left: 20%;">ShowRooms</button>
+    </div>
+    
+  </div>
+
+  <!-- Complains -->
+  <div id="Top" class="w3-container city w3-animate-right" style="display:none">
+    <h1 style="font-weight: bold;">Feedback</h1>
+    <div class="container" style="color:rgb(255, 255, 255); background-color: rgba(117, 117, 117, 0.274); width: 500px;">
+      <table id="show2" border="0">
+          <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Message</th>
+                     </tr>
+              </thead>
+              <tfoot>
+            <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Message</th>
+          </tr>
+              </tfoot>
+
+      </table>
+      <button id="mybutton2">Show Complains</button>
+    </div>
+  </div>
+
+  <!-- Bookings -->
+  <div id="Bottom" class="w3-container city w3-animate-right" style="display:none">
+    <h1 style="font-weight: bold;">Bookings</h1>
+    <div class="container" style="color:rgb(255, 255, 255); background-color: rgba(117, 117, 117, 0.274); width: 500px;">
+      <table id="show3" border="0">
+          <thead>
+                  <tr>
+                      <th>Arrival Date</th>
+                      <th>Arrival Date</th>
+                      <th>Name</th>
+                      <th>Rooms</th>
+                      <th>Bill</th>
+                     </tr>
+              </thead>
+              <tfoot>
+            <tr>
+              <th>Arrival Date</th>
+              <th>Arrival Date</th>
+              <th>Name</th>
+              <th>Rooms</th>
+              <th>Bill</th>
+          </tr>
+              </tfoot>
+
+      </table>
+      <button id="mybutton3">Show Bookings</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openLink(evt, animName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-grey", "");
+  }
+  document.getElementById(animName).style.display = "block";
+  evt.currentTarget.className += " w3-grey";
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+  document.getElementById('hide').style.color = "transparent";
+  document.getElementById('hide').style.transition = "all 0.5s";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+  document.getElementById('hide').style.color = "white";
+}
+
+
+
+  var myData
+  $(document.body).on('click',"#mybutton",function (e) {
+
+           $.ajax({type:"GET",
+               url:"/api/Rooms",
+               success: function(result){
+                   myData = result
+                   console.log(result)
+                   console.log(myData)
+                   if(myData !=null || myData !=""){
+                      table = $('#show').DataTable( {
+                          data: myData ,destroy: true,
+                          columns: [
+                              { data: 'r_number' },
+                              { data: 'r_type' },
+                              { data: 'r_price' },
+                              { data: 'r_status' },
+
+                          ]
+                      } );
+                  }
+
+            }});
+  });
+
+  $(document).ready(function(){
+    // click on button submit
+    $("#submit").on('click', function(){
+        // send ajax
+        var formdata = $("#form").serializeArray();
+        var data = {};
+        $(formdata ).each(function(index, obj){
+            data[obj.name] = obj.value;
+        });
+        data=JSON.stringify(data)
+        console.log(data)
+        $.ajax({
+            url: '/api/Rooms', // url where to submit the request
+            type : "POST", // type of action POST || GET
+            data : data, // post data || get data
+            dataType : 'json',
+            contentType: "application/json; charset=utf-8",
+
+            success : function(result) {
+                // you can see the result from the console
+                // tab of the developer tools
+                console.log(result);
+            },
+            error: function(xhr, resp, text) {
+                console.log(xhr, resp, text);
+            }
+        })
+
+    });
+});
+
+
+
+  var myData
+        $(document.body).on('click',"#mybutton1",function (e) {
+           //doStuff
+            console.log("hello")
+                 $.ajax({type:"GET",
+                     url:"/api/Guest",
+                     success: function(result){
+                         myData = result
+                         console.log(result)
+                         console.log(myData)
+                         if(myData !=null || myData !=""){
+                            table = $('#show1').DataTable( {
+                                data: myData ,destroy: true,
+                                columns: [
+                                    { data: 'g_name' },
+                                    { data: 'g_email' },
+                                    { data: 'g_city' },
+                                    { data: 'g_state' },
+                                    { data: 'g_country' },
+                                    { data: 'g_PN' },
+                                ]
+                            } );
+                        }
+
+                  }});
+        });
+
+        
+
+        var myData
+        $(document.body).on('click',"#mybutton3",function (e) {
+           //doStuff
+            console.log("hello")
+                 $.ajax({type:"GET",
+                     url:"/api/Bookings",
+                     success: function(result){
+                         myData = result
+                         console.log(result)
+                         console.log(myData)
+                         if(myData !=null || myData !=""){
+                            table = $('#show3').DataTable( {
+                                data: myData, destroy: true,
+                                columns: [
+                                    { data: 'at' },
+                                    { data: 'dt' },
+                                    { data: 'g_name' },
+                                    { data: 'r_count' },
+                                    { data: 'bill' },
+                                ]
+                            } );
+                        }
+
+                  }});
+        });
+
+        
+
+        var myData
+        $(document.body).on('click',"#mybutton2",function (e) {
+           //doStuff
+            console.log("hello")
+                 $.ajax({type:"GET",
+                     url:"/api/Complains",
+                     success: function(result){
+                         myData = result
+                         console.log(result)
+                         console.log(myData)
+                         if(myData !=null || myData !=""){
+                            table = $('#show2').DataTable( {
+                                data: myData, destroy: true,
+                                columns: [
+                                    { data: 'name' },
+                                    { data: 'email' },
+                                    { data: 'message' },
+                                ]
+                            } );
+                        }
+
+                  }});
+        });
+
+        var myData;
+
+        $(document).ready(function () {
+            console.log("Fetching data from MongoDB...");
+        
+            $.ajax({
+                type: "GET",
+                url: "/api/Count",
+                success: function (result) {
+                    myData = result;
+                    console.log(result);
+                    console.log(myData);
+        
+                    if (myData != null && myData != "") {
+                        
+                        
+                        $("#guest").val(myData.Guests);
+                    }
+                }
+            });
+        });
+         
+</script>
+
+</body>
+</html>

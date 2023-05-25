@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/hotel.css">
+    <link rel="stylesheet" href="../static/animations.css">
+    <script src="../static/BootStrap/js/jquery.min.js"></script>
+    <title>King's Hotel</title>
+</head>
+<style>
+    @media only screen and (max-width:1000px) {
+        .temp{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+    body{
+      margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../static/background.jpg');
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: sans-serif, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+    font-weight: bold;
+    font-style: bold;
+    }
+  body,
+html {
+  height: 100%;
+}
+
+.d-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.align-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.flex-centerY-centerX {
+  justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.page-wrapper {
+  height: 100%;
+  display: table;
+}
+
+.page-wrapper .page-inner {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.el-wrapper {
+  width: 360px;
+  padding: 15px;
+  margin: 15px auto;
+  border-radius: 7px;
+  background-color: rgba(150, 150, 150, 0.418);
+}
+
+.btn{
+	width: 60%;
+	height: 40px;
+	margin: 10px auto;
+	justify-content: center;
+	display: block;
+	color: #fff;
+	background: #000000;
+	font-size: 1em;
+	font-weight: bold;
+	margin-top: 20px;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	transition: .2s ease-in;
+	cursor: pointer;
+}
+.btn:hover{
+	background: #3a3a3a;
+}
+
+@media (max-width: 991px) {
+  .el-wrapper {
+    width: 345px;
+  }
+}
+
+@media (max-width: 767px) {
+  .el-wrapper {
+    width: 290px;
+    margin: 30px auto;
+  }
+}
+
+.el-wrapper:hover .h-bg {
+  left: 0px;
+}
+
+.el-wrapper:hover .price {
+  left: 20px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #818181;
+}
+
+.el-wrapper:hover .add-to-cart {
+  left: 50%;
+}
+
+.el-wrapper:hover .img {
+  /* webkit-filter: blur(7px); */
+  -o-filter: blur(7px);
+  -ms-filter: blur(7px);
+  filter: blur(7px);
+  filter: progid:DXImageTransform.Microsoft.Blur(pixelradius='7', shadowopacity='0.0');
+  opacity: 0.4;
+}
+
+.el-wrapper:hover .info-inner {
+  bottom: 155px;
+}
+
+.el-wrapper:hover .a-size {
+  -webkit-transition-delay: 300ms;
+  -o-transition-delay: 300ms;
+  transition-delay: 300ms;
+  bottom: 50px;
+  opacity: 1;
+}
+
+.el-wrapper .box-down {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.el-wrapper .box-up {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.el-wrapper .img {
+  padding: 20px 0;
+  -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+}
+
+.h-bg {
+  -webkit-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 800ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  width: 660px;
+  height: 100%;
+  background-color: #3f96cd;
+  position: absolute;
+  left: -659px;
+}
+
+.h-bg .h-bg-inner {
+  width: 50%;
+  height: 100%;
+  background-color: #464646;
+}
+
+.info-inner {
+  -webkit-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 400ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  position: absolute;
+  width: 100%;
+  bottom: 25px;
+}
+
+.info-inner .p-name,
+.info-inner .p-company {
+  display: block;
+}
+
+.info-inner .p-name {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.info-inner .p-company {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.a-size {
+  -webkit-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 300ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  position: absolute;
+  width: 100%;
+  bottom: -20px;
+  font-family: 'PT Sans', sans-serif;
+  color: #ffffff;
+  opacity: 0;
+}
+
+.a-size .size {
+  color: #252525;
+}
+
+.cart {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+.cart .price {
+  -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #252525;
+}
+
+.cart .add-to-cart {
+  -webkit-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  -o-transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  transition: all 600ms cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -moz-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  -o-transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.18, 1);
+  /* ease-out */
+  -webkit-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.cart .add-to-cart .txt {
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+input{
+  width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #ccc;
+    padding:0 0 0 15px;
+    font-size: 15px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    border-bottom-color:black;
+}
+
+img {
+  width: 100%;
+}
+
+</style>
+<body>
+  <section class="cd-intro">
+    <div class="cd-intro-content bouncy">
+        <div class="action-wrapper">
+
+            <!-- Start your content here -->
+            <center style="font-weight:bold; font-size:35px; color: white">Room Categories</center>
+            <div class="temp" style="display: flex;">
+              <div class="container page-wrapper" style="padding: 1%;">
+                <div class="page-inner">
+                  <div class="row">
+                    <div class="el-wrapper">
+                      <div class="box-up">
+                        <img class="img" src="../static/slider5.jpg" alt="">
+                        <div class="img-info">
+                          <div class="info-inner">
+                            <span class="p-name">Deluxe Room</span>
+                            <span class="p-company">King's Hotel</span>
+                          </div>
+                          <div class="a-size">Available rooms: <span class="size"><input id="dRooms" name="dRooms" style="border: none; width: 25px;"></span></div>
+                          
+                        </div>
+                      </div>
+              
+                      <div class="box-down">
+                        <div class="h-bg">
+                          <div class="h-bg-inner"></div>
+                        </div>
+              
+                        <button class="cart" onclick="add(500, 'dRooms')">
+                          <span class="price">$500</span>
+                          <span class="add-to-cart">
+                            <span class="txt">Book</span>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container page-wrapper" style="padding: 1%;">
+                <div class="page-inner">
+                  <div class="row">
+                    <div class="el-wrapper">
+                      <div class="box-up">
+                        <img class="img" src="../static/single.jpg" alt="">
+                        <div class="img-info">
+                          <div class="info-inner">
+                            <span class="p-name">Single Room</span>
+                            <span class="p-company">King's Hotel</span>
+                          </div>
+                          <div class="a-size">Available rooms: <span class="size"><input id="sRooms" name="sRooms" style="border: none; width: 25px;"></span></div>
+                        </div>
+                      </div>
+              
+                      <div class="box-down">
+                        <div class="h-bg">
+                          <div class="h-bg-inner"></div>
+                        </div>
+              
+                        <button class="cart" onclick="add(150, 'sRooms')">
+                          <span class="price">$150</span>
+                          <span class="add-to-cart">
+                            <span class="txt">Book</span>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="container page-wrapper" style="padding: 1%;">
+                <div class="page-inner">
+                  <div class="row">
+                    <div class="el-wrapper">
+                      <div class="box-up">
+                        <img class="img" src="../static/slider4.jpg" alt="">
+                        <div class="img-info">
+                          <div class="info-inner">
+                            <span class="p-name">Double Room</span>
+                            <span class="p-company">King's Hotel</span>
+                          </div>
+                          <div class="a-size">Available rooms: <span class="size"><input id="dblRooms" name="dblRooms" style="border: none; width: 25px;"></span></div>
+                        </div>
+                      </div>
+              
+                      <div class="box-down">
+                        <div class="h-bg">
+                          <div class="h-bg-inner"></div>
+                        </div>
+              
+                        <button class="cart" onclick="add(250, 'dblRooms')">
+                          <span class="price">$250</span>
+                          <span class="add-to-cart">
+                            <span class="txt">Book</span>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          
+
+          <form action="/booking3" method="POST">
+          <input type="text" id="val" name="val" placeholder="Total Bill" style="margin-left: 2vw;">
+          <input type="text" id="tCount" name="tCount" placeholder="Total Rooms" style="margin-left: 2vw;">
+          <input type="date" id="aT" name="aT" placeholder="Arrival Date" style="margin-left: 2vw;" value="{{at}}">
+          <input type="date" id="dT" name="dT" placeholder="Departure Date" style="margin-left: 2vw;" value="{{dt}}">
+          <button class="btn" id="myButton3"><a type="submit">Next</a></button>
+        </form>
+
+          <input type="checkbox" id="burger-toggle">
+          <label for="burger-toggle" class="burger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+          <div class="menu">
+            <div class="menu-inner">
+              <ul class="menu-nav">
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/hotel"><span>
+                      <div>Home</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/service"><span>
+                      <div>Services</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/login"><span>
+                      <div>Login</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/contact"><span>
+                      <div>Contact Us</div>
+                    </span></a></li>
+                    <li class="menu-nav-item"><a class="menu-nav-link" href="/more"><span>
+                          <div>About</div>
+                        </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/booking"><span>
+                      <div>Book Now</div>
+                    </span></a></li>
+                    <li class="menu-nav-item"><a class="menu-nav-link" href="/complain"><span>
+                      <div>Feedback</div>
+                    </span></a></li>
+              </ul>
+              <div class="gallery">
+                <div class="title">
+                  <p>Gallery</p>
+                </div>
+                <div class="images">
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Prized Locations"><img src="../static/locations.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Fine Dining"><img src="../static/dining.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Meetings & Events"><img src="../static/events.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Spa & Fitness"><img src="../static/spa.jpg" alt=""></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  <script>
+
+$(document).ready(function () {
+   getData();
+});
+
+function getData() {
+   $.ajax({type:"GET",
+      url:"/api/AvailabiltyAll",
+      success: function(result){
+         myData = result;
+         if(myData != null || myData != ""){
+            $("#dRooms").val(myData.Deluxe);
+            $("#sRooms").val(myData.single);
+            $("#dblRooms").val(myData.Double);
+         }
+      }
+   });
+}
+
+
+result = "";
+tCnt = 0;
+function add(a, iD) {
+  if(iD == 'dRooms'){
+    if(document.getElementById('dRooms').value > 0) {
+      result += '+';
+      result += a;
+      result = eval(result);
+      console.log(result);
+      val.value = result;
+      tCnt++;
+      tCount.value=tCnt;
+      document.getElementById('dRooms').value--;
+    }
+  }
+  else if(iD == 'sRooms'){
+    if(document.getElementById('sRooms').value > 0) {
+      result += '+';
+      result += a;
+      result = eval(result);
+      console.log(result);
+      val.value = result;
+      tCnt++;
+      tCount.value=tCnt;
+      document.getElementById('sRooms').value--;
+    }
+  }
+  else if(iD == 'dblRooms'){
+    if(document.getElementById('dblRooms').value > 0) {
+      result += '+';
+      result += a;
+      result = eval(result);
+      console.log(result);
+      val.value = result;
+      tCnt++;
+      tCount.value=tCnt;
+      document.getElementById('dblRooms').value--;
+    }
+  }
+}
+
+
+let bookingData = {
+  tRooms: tCount,
+  bill: val
+}
+var myData
+        $(document.body).on('click',"#mybutton3",function (e) {
+
+          $.ajax({
+  type: "POST",
+  url: "/booking3",
+  data: JSON.stringify(bookingData),
+  contentType: "application/json; charset=utf-8",
+  dataType: "json",
+  success: function(response) {
+    // Handle the successful response from the API here
+  },
+  error: function(error) {
+    // Handle any errors that occurred during the request here
+  }
+});
+       });
+
+
+
+
+  </script>
+</body>
+</html>

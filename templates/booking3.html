@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="../static/booking3.css">
+    <link rel="stylesheet" href="../static/hotel.css">
+    <link rel="stylesheet" href="../static/animations.css">
+    <script src="../static/BootStrap/js/jquery.min.js"></script>
+</head>
+<body>
+    <div style="display:flex;">
+        <div class="container" style="color: white; background-color: rgba(117, 117, 117, 0.384);">
+            <div class="title">Book now</div>
+            <form id="form" action="/booking4" method="POST">
+                <div class="details">
+                    <div class="input-box">
+                        <label>Name</label>
+                        <input type="text" id="g_name" name="g_name" placeholder="Enter Customer name">
+                    </div>
+                    <div class="input-box">
+                        <label>E-mail</label>
+                        <input type="email" id="g_email" name="g_email" placeholder="Enter Customer E-mail">
+                    </div>
+                    <div class="input-box">
+                        <label>City</label>
+                        <input type="text" id="g_city" name="g_city" placeholder="Enter Customer city">
+                    </div>
+                    <div class="input-box">
+                        <label>State</label>
+                        <input type="text" id="g_state" name="g_state" placeholder="Enter Customer State">
+                    </div>
+                    <div class="input-box">
+                        <label>Country</label>
+                        <input type="text" id="g_country" name="g_country" placeholder="Enter Customer State">
+                    </div>
+                    <div class="input-box">
+                        <label>Phone No</label>
+                        <input type="number"  id="g_PN" name="g_PN" placeholder="Enter customer phone no" value="d">
+                    </div>1
+                    <div class="input-box">
+                        <label>No of Rooms</label>
+                        <input type="number"  id="rooms" name="rooms" value="{{rooms}}">
+                    </div>
+                    <div class="input-box">
+                        <label>Total Bill</label>
+                        <input type="number"  id="bill" name="bill" value="{{bill}}">
+                    </div>
+                    <div class="input-box">
+                        <label>Arrival Date</label>
+                        <input type="date"  id="aT" name="aT" value="{{aT}}">
+                    </div>
+                    <div class="input-box">
+                        <label>Departure Date</label>
+                        <input type="date"  id="dT" name="dT" value="{{dT}}">
+                    </div>
+                    <button style="margin-left: 34%;"><input type="submit" value="Check Reciept"></button>
+            
+                    
+            </form>
+        </div>
+    </div>
+    <input type="checkbox" id="burger-toggle">
+          <label for="burger-toggle" class="burger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+          <div class="menu">
+            <div class="menu-inner">
+              <ul class="menu-nav">
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/hotel"><span>
+                      <div>Home</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/service"><span>
+                      <div>Services</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/login"><span>
+                      <div>Login</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/contact"><span>
+                      <div>Contact Us</div>
+                    </span></a></li>
+                    <li class="menu-nav-item"><a class="menu-nav-link" href="/more"><span>
+                          <div>About</div>
+                        </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/booking"><span>
+                      <div>Book Now</div>
+                    </span></a></li>
+                    <li class="menu-nav-item"><a class="menu-nav-link" href="/complain"><span>
+                      <div>Feedback</div>
+                    </span></a></li>
+              </ul>
+              <div class="gallery">
+                <div class="title">
+                  <p>Gallery</p>
+                </div>
+                <div class="images">
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Prized Locations"><img src="../static/locations.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Fine Dining"><img src="../static/dining.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Meetings & Events"><img src="../static/events.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Spa & Fitness"><img src="../static/spa.jpg" alt=""></div>
+                  </a>
+                </div>
+              </div>
+
+
+              <script>
+            
+
+
+            $(document).ready(function(){
+                    // click on button submit
+                    $("#submit").on('click', function(){
+                        // send ajax
+                        var formdata = $("#form").serializeArray();
+                        var data = {};
+                        $(formdata ).each(function(index, obj){
+                            data[obj.name] = obj.value;
+                        });
+                        data=JSON.stringify(data)
+                        console.log(data)
+                        $.ajax({
+                            url: '/api/Guest', // url where to submit the request
+                            type : "POST", // type of action POST || GET
+                            data : data, // post data || get data
+                            dataType : 'json',
+                            contentType: "application/json; charset=utf-8",
+            
+                            success : function(result) {
+            
+                                console.log(result);
+                            },
+                            error: function(xhr, resp, text) {
+                                console.log(xhr, resp, text);
+                            }
+                        })
+            
+                    });
+                });
+                </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

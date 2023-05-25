@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete_Room</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<center>
+
+    <H1>DELETE Room</H1><br>
+    <form id="form"  >
+ID: <input type="number" id="r_number"><br>
+
+
+
+
+<button id="submit">Submit</button>
+
+{#<input id="submit" type="button" name="submit" value="submit">#}
+</form>
+
+</center>
+
+<script>
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(){
+
+
+            console.log("Hello I am in Ajax")
+
+            r_number=document.getElementById("r_number").value
+            console.log(r_number)
+            $.ajax({
+                url: '/api/RoomsApi?r_number='+r_number, // url where to submit the request
+                type : "DELETE", // type of action POST || GET
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+
+        });
+    });
+    </script>
+
+</body>
+</html>

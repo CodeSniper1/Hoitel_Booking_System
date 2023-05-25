@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/booking.css">
+    <link rel="stylesheet" href="../static/hotel.css">
+    <link rel="stylesheet" href="../static/animations.css">
+    <script src="../static/BootStrap/js/jquery.min.js"></script>
+    <title>King's Hotel</title>
+</head>
+<body>
+  <section class="cd-intro">
+    <div class="cd-intro-content bouncy">
+        <div class="action-wrapper">
+
+            <div class="container" style="color:rgb(255, 255, 255); background-color: rgba(117, 117, 117, 0.274);">
+                <div class="title" style="font-weight: bold;">Book Now</div>
+                <form id="form" action="/booking2" method="POST">
+                    <div class="details">
+                        <div class="input-box">
+                            <label>Arrival Date</label>
+                            <input type="date" name="at" placeholder="Enter your arrival Date">
+                        </div>
+                        <div class="input-box">
+                            <label>Departure Time</label>
+                            <input type="date" name="dt" placeholder="Enter your Departure date">
+                        </div>
+                    </div>
+                    <div>
+                      <!-- <button id="submit">Check Availability</button> -->
+                      <input type="submit" value="Check Availability" class="btn">
+                      <!-- <a href="booking2.html"> next page</a> -->
+                    </div>
+                </form>
+            </div>
+
+
+
+          <input type="checkbox" id="burger-toggle">
+          <label for="burger-toggle" class="burger-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </label>
+          <div class="menu">
+            <div class="menu-inner">
+              <ul class="menu-nav">
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/hotel"><span>
+                      <div>Home</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/service"><span>
+                      <div>Services</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/login"><span>
+                      <div>Login</div>
+                    </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/contact"><span>
+                      <div>Contact Us</div>
+                    </span></a></li>
+                    <li class="menu-nav-item"><a class="menu-nav-link" href="/more"><span>
+                          <div>About</div>
+                        </span></a></li>
+                <li class="menu-nav-item"><a class="menu-nav-link" href="/booking"><span>
+                      <div>Book Now</div>
+                    </span></a></li>
+                    <li class="menu-nav-item"><a class="menu-nav-link" href="/complain"><span>
+                      <div>Feedback</div>
+                    </span></a></li>
+              </ul>
+              <div class="gallery">
+                <div class="title">
+                  <p>Gallery</p>
+                </div>
+                <div class="images">
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Prized Locations"><img src="../static/locations.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Fine Dining"><img src="../static/dining.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Meetings & Events"><img src="../static/events.jpg" alt=""></div>
+                  </a>
+                  <a class="image-link" href="#">
+                    <div class="image" data-label="Spa & Fitness"><img src="../static/spa.jpg" alt=""></div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!--   -->
+
+
+
+
+
+
+
+
+
+</body>
+</html>
